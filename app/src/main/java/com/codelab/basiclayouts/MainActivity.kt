@@ -24,6 +24,9 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -102,7 +105,7 @@ fun AlignYourBodyElement(
 @Composable
 fun FavoriteCollectionCard(
     @DrawableRes fc_image: Int,
-    @StringRes fc_text:Int,
+    @StringRes fc_text: Int,
     modifier: Modifier = Modifier
 ) {
     Surface(
@@ -111,7 +114,7 @@ fun FavoriteCollectionCard(
     ) {
         Row(
             modifier = Modifier
-                .width(192 .dp),
+                .width(192.dp),
             verticalAlignment = Alignment.CenterVertically
 
         ) {
@@ -122,7 +125,7 @@ fun FavoriteCollectionCard(
                 modifier = Modifier
                     .size(56.dp),
 
-            )
+                )
             Text(
                 text = stringResource(fc_text),
                 style = MaterialTheme.typography.h3,
@@ -143,9 +146,9 @@ fun AlignYourBodyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp),
         modifier = Modifier
-    ){
-        items(alignYourBodyData){item ->
-            AlignYourBodyElement(item.drawable, item.text )
+    ) {
+        items(alignYourBodyData) { item ->
+            AlignYourBodyElement(item.drawable, item.text)
         }
     }
 }
@@ -155,7 +158,21 @@ fun AlignYourBodyRow(
 fun FavoriteCollectionsGrid(
     modifier: Modifier = Modifier
 ) {
-    // Implement composable here
+    LazyHorizontalGrid(
+        rows = GridCells.Fixed(2),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier.height(120.dp)
+    ) {
+        items(favoriteCollectionsData) { item ->
+            FavoriteCollectionCard(
+                item.drawable,
+                item.text,
+                modifier = Modifier.height(56.dp)
+            )
+        }
+    }
 }
 
 // Step: Home section - Slot APIs
@@ -163,7 +180,8 @@ fun FavoriteCollectionsGrid(
 fun HomeSection(
     modifier: Modifier = Modifier
 ) {
-    // Implement composable here
+
+
 }
 
 // Step: Home screen - Scrolling
@@ -209,7 +227,9 @@ private data class DrawableStringPair(
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
-fun SearchBarPreview() { MySootheTheme { SearchBar(Modifier.padding(8.dp)) } }
+fun SearchBarPreview() {
+    MySootheTheme { SearchBar(Modifier.padding(8.dp)) }
+}
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
@@ -226,15 +246,19 @@ fun AlignYourBodyElementPreview() {
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionCardPreview() {
-    MySootheTheme { FavoriteCollectionCard(
-        R.drawable.fc2_nature_meditations,
-        R.string.fc2_nature_meditations,
-        Modifier.padding(8.dp)) } }
+    MySootheTheme {
+        FavoriteCollectionCard(
+            R.drawable.fc2_nature_meditations,
+            R.string.fc2_nature_meditations,
+            Modifier.padding(8.dp)
+        )
+    }
+}
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionsGridPreview() {
-    MySootheTheme { FavoriteCollectionsGrid(Modifier.padding(8.dp)) }
+    MySootheTheme { FavoriteCollectionsGrid() }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
