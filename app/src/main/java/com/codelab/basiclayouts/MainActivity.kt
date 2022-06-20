@@ -41,8 +41,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelab.basiclayouts.ui.theme.MySootheTheme
-import com.codelab.basiclayouts.ui.theme.shapes
 import androidx.compose.foundation.lazy.items
+import java.util.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,14 +78,14 @@ fun SearchBar(
 // Step: Align your body - Alignment
 @Composable
 fun AlignYourBodyElement(
-    @DrawableRes ab_image: Int,
-    @StringRes ab_title: Int,
+    @DrawableRes drawable: Int,
+    @StringRes text: Int,
     modifier: Modifier = Modifier
 ) {
     Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
 
         Image(
-            painterResource(ab_image),
+            painterResource(drawable),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -93,7 +93,7 @@ fun AlignYourBodyElement(
                 .clip(CircleShape)
         )
         Text(
-            stringResource(ab_title),
+            stringResource(text),
             style = MaterialTheme.typography.h3,
             modifier = Modifier
                 .paddingFromBaseline(top = 24.dp, bottom = 8.dp)
@@ -104,8 +104,8 @@ fun AlignYourBodyElement(
 // Step: Favorite collection card - Material Surface
 @Composable
 fun FavoriteCollectionCard(
-    @DrawableRes fc_image: Int,
-    @StringRes fc_text: Int,
+    @DrawableRes drawable: Int,
+    @StringRes text: Int,
     modifier: Modifier = Modifier
 ) {
     Surface(
@@ -119,7 +119,7 @@ fun FavoriteCollectionCard(
 
         ) {
             Image(
-                painter = painterResource(fc_image),
+                painter = painterResource(drawable),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -127,7 +127,7 @@ fun FavoriteCollectionCard(
 
                 )
             Text(
-                text = stringResource(fc_text),
+                text = stringResource(text),
                 style = MaterialTheme.typography.h3,
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
@@ -176,19 +176,35 @@ fun FavoriteCollectionsGrid(
 }
 
 // Step: Home section - Slot APIs
+
 @Composable
 fun HomeSection(
-    modifier: Modifier = Modifier
+    @StringRes title: Int,
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
 ) {
-
-
+    Column(modifier) {
+        Text(
+            text = stringResource(title).uppercase(Locale.getDefault()),
+            style = MaterialTheme.typography.h2,
+            modifier = Modifier
+                .paddingFromBaseline(top = 40.dp, bottom = 8.dp)
+                .padding(horizontal = 16.dp)
+        )
+        content()
+    }
 }
-
+/*
 // Step: Home screen - Scrolling
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
-    // Implement composable here
-}
+    Column(modifier.padding(vertical = 16.dp)) {
+        SearchBar(modifier = Modifier.padding(horizontal = 16.dp))
+        HomeSection(R.string.align_your_body, ) { AlignYourBodyRow() }
+        HomeSection(R.string.favorite_collections, ) { FavoriteCollectionsGrid() }
+
+    }
+}*/
 
 // Step: Bottom navigation - Material
 @Composable
@@ -267,17 +283,21 @@ fun AlignYourBodyRowPreview() {
     MySootheTheme { AlignYourBodyRow() }
 }
 
-//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun HomeSectionPreview() {
-    MySootheTheme { HomeSection() }
+    MySootheTheme {
+        HomeSection(title = R.string.align_your_body) {
+            AlignYourBodyRow()
+        }
+    }
 }
-
-//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+/*
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun ScreenContentPreview() {
     MySootheTheme { HomeScreen() }
-}
+}*/
 
 //@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
