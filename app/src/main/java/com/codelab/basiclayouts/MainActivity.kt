@@ -37,6 +37,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelab.basiclayouts.ui.theme.MySootheTheme
+import com.codelab.basiclayouts.ui.theme.shapes
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,9 +57,9 @@ fun SearchBar(
         leadingIcon = {
             Icon(Icons.Default.Search, contentDescription = null)
         },
-       placeholder = {
-           Text(stringResource(id = R.string.placeholder_search))
-       },
+        placeholder = {
+            Text(stringResource(id = R.string.placeholder_search))
+        },
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = MaterialTheme.colors.surface
         ),
@@ -76,13 +77,15 @@ fun AlignYourBodyElement(
     @StringRes ab_title: Int,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier,horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
 
         Image(
             painterResource(ab_image),
             contentDescription = null,
             contentScale = ContentScale.Crop,
-        modifier = Modifier.size(88.dp).clip(CircleShape)
+            modifier = Modifier
+                .size(88.dp)
+                .clip(CircleShape)
         )
         Text(
             stringResource(ab_title),
@@ -96,8 +99,36 @@ fun AlignYourBodyElement(
 // Step: Favorite collection card - Material Surface
 @Composable
 fun FavoriteCollectionCard(
+    @DrawableRes fc_image: Int,
+    @StringRes fc_text:Int,
     modifier: Modifier = Modifier
 ) {
+    Surface(
+        shape = MaterialTheme.shapes.small,
+        modifier = modifier
+    ) {
+        Row(
+            modifier = Modifier
+                .width(192 .dp),
+            verticalAlignment = Alignment.CenterVertically
+
+        ) {
+            Image(
+                painter = painterResource(fc_image),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(56.dp),
+
+            )
+            Text(
+                text = stringResource(fc_text),
+                style = MaterialTheme.typography.h3,
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+            )
+        }
+    }
     // Implement composable here
 }
 
@@ -168,9 +199,7 @@ private data class DrawableStringPair(
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
-fun SearchBarPreview() {
-    MySootheTheme { SearchBar(Modifier.padding(8.dp)) }
-}
+fun SearchBarPreview() { MySootheTheme { SearchBar(Modifier.padding(8.dp)) } }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
@@ -184,20 +213,18 @@ fun AlignYourBodyElementPreview() {
     }
 }
 
-//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionCardPreview() {
-    MySootheTheme {
-        FavoriteCollectionCard(
-            modifier = Modifier.padding(8.dp)
-        )
-    }
-}
+    MySootheTheme { FavoriteCollectionCard(
+        R.drawable.fc2_nature_meditations,
+        R.string.fc2_nature_meditations,
+        Modifier.padding(8.dp)) } }
 
 //@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionsGridPreview() {
-    MySootheTheme { FavoriteCollectionsGrid() }
+    MySootheTheme { FavoriteCollectionsGrid(Modifier.padding(8.dp)) }
 }
 
 //@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
