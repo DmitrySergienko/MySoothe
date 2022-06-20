@@ -42,6 +42,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelab.basiclayouts.ui.theme.MySootheTheme
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import java.util.*
 
 class MainActivity : ComponentActivity() {
@@ -194,17 +196,19 @@ fun HomeSection(
         content()
     }
 }
-/*
+
 // Step: Home screen - Scrolling
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
-    Column(modifier.padding(vertical = 16.dp)) {
+    Column(modifier.verticalScroll(rememberScrollState())) {
+        Spacer(Modifier.height(16.dp))
         SearchBar(modifier = Modifier.padding(horizontal = 16.dp))
         HomeSection(R.string.align_your_body, ) { AlignYourBodyRow() }
         HomeSection(R.string.favorite_collections, ) { FavoriteCollectionsGrid() }
+        Spacer(Modifier.height(16.dp))
 
     }
-}*/
+}
 
 // Step: Bottom navigation - Material
 @Composable
@@ -241,13 +245,13 @@ private data class DrawableStringPair(
     @StringRes val text: Int
 )
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun SearchBarPreview() {
     MySootheTheme { SearchBar(Modifier.padding(8.dp)) }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun AlignYourBodyElementPreview() {
     MySootheTheme {
@@ -259,7 +263,7 @@ fun AlignYourBodyElementPreview() {
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionCardPreview() {
     MySootheTheme {
@@ -271,19 +275,19 @@ fun FavoriteCollectionCardPreview() {
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionsGridPreview() {
     MySootheTheme { FavoriteCollectionsGrid() }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun AlignYourBodyRowPreview() {
     MySootheTheme { AlignYourBodyRow() }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun HomeSectionPreview() {
     MySootheTheme {
@@ -292,12 +296,12 @@ fun HomeSectionPreview() {
         }
     }
 }
-/*
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2, heightDp = 180)
 @Composable
 fun ScreenContentPreview() {
     MySootheTheme { HomeScreen() }
-}*/
+}
 
 //@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
