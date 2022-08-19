@@ -46,6 +46,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Spa
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import com.codelab.basiclayouts.data.MockProjectsRepoImpl
 import java.util.*
@@ -239,8 +240,6 @@ fun FavoriteCollectionsGridPic(
     }
 }
 
-
-
 // Step: Home section - Slot APIs
 
 @Composable
@@ -269,6 +268,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         HomeSection(R.string.align_your_body, ) { UrbanPhotoRow() }
         HomeSection(R.string.favorite_collections, ) { FavoriteCollectionsGrid() }
         HomeSection(R.string.favorite_collections, ) { FavoriteCollectionsGridPic() }
+        HomeSection(R.string.favorite_collections, ) { PhotoBig() }
         Spacer(Modifier.height(16.dp))
         SearchBar(modifier = Modifier.padding(horizontal = 16.dp))
 
@@ -322,27 +322,6 @@ fun MySootheApp() {
 }
 
 
-
-
-
-//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
-@Composable
-fun SearchBarPreview() {
-    MySootheTheme { SearchBar(Modifier.padding(8.dp)) }
-}
-
-//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
-@Composable
-fun AlignYourBodyElementPreview() {
-    MySootheTheme {
-        AlignYourBodyElement(
-            R.drawable.ab1_inversions,
-            R.string.ab1_inversions,
-            modifier = Modifier.padding(8.dp)
-        )
-    }
-}
-
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionCardPreview() {
@@ -361,36 +340,33 @@ fun FavoriteCollectionsGridPreview() {
     MySootheTheme { FavoriteCollectionsGrid() }
 }
 
-//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
-fun AlignYourBodyRowPreview() {
-    MySootheTheme { UrbanPhotoRow() }
-}
+fun PhotoBig(
+){
+    Column(
 
-//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
-@Composable
-fun HomeSectionPreview() {
-    MySootheTheme {
-        HomeSection(title = R.string.align_your_body) {
-            UrbanPhotoRow()
+        modifier = Modifier
+            .fillMaxWidth()
+            .width(200.dp)
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+
+    ) {
+        MySootheTheme{
+            Image(
+                painter = painterResource(id = R.drawable.ic_006),
+                contentDescription = "imageBack",
+                modifier = Modifier
+                    .fillMaxSize(),
+
+                contentScale = ContentScale.FillBounds
+            )
         }
+
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
-@Composable
-fun ScreenContentPreview() {
-    MySootheTheme { HomeScreen() }
-}
 
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
-@Composable
-fun BottomNavigationPreview() {
-    MySootheTheme { MyBottomNavigation(Modifier.padding(top = 24.dp)) }
-}
 
-//@Preview(widthDp = 360, heightDp = 640)
-@Composable
-fun MySoothePreview() {
-    MySootheApp()
-}
+
+
