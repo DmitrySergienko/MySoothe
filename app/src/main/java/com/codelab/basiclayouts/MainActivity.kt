@@ -17,16 +17,16 @@
 package com.codelab.basiclayouts
 
 import android.os.Bundle
+import android.provider.ContactsContract
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -46,6 +46,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Spa
+import androidx.compose.ui.graphics.Color
 import com.codelab.basiclayouts.data.MockProjectsRepoImpl
 import java.util.*
 
@@ -141,11 +142,43 @@ fun FavoriteCollectionCard(
     }
     // Implement composable here
 }
+// Step: Favorite collection card - Material Surface
+@Composable
+fun FavoriteCollectionCardPic(
+    @DrawableRes drawable: Int,
+
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        shape = MaterialTheme.shapes.small,
+        modifier = modifier
+    ) {
+        Row(
+            modifier = Modifier
+                .width(65.dp)
+                .height(65.dp),
+            verticalAlignment = Alignment.CenterVertically
+
+
+        ) {
+            Image(
+                painter = painterResource(drawable),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(900.dp),
+
+                )
+
+        }
+    }
+    // Implement composable here
+}
 
 // Step: Align your body row - Arrangements
 @Composable
 
-fun AlignYourBodyRow(
+fun UrbanPhotoRow(
 
     modifier: Modifier = Modifier
 ) {
@@ -155,12 +188,11 @@ fun AlignYourBodyRow(
         contentPadding = PaddingValues(horizontal = 16.dp),
         modifier = Modifier
     ) {
-        items(data.alignYourBodyData) { item ->
+        items(data.urbanPhoto) { item ->
             AlignYourBodyElement(item.drawable, item.text)
         }
     }
 }
-
 // Step: Favorite collections grid - LazyGrid
 @Composable
 fun FavoriteCollectionsGrid(
@@ -168,7 +200,7 @@ fun FavoriteCollectionsGrid(
 ) {
     val data = MockProjectsRepoImpl()
     LazyHorizontalGrid(
-        rows = GridCells.Fixed(2),
+        rows = GridCells.Fixed(3),
         contentPadding = PaddingValues(horizontal = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -183,6 +215,31 @@ fun FavoriteCollectionsGrid(
         }
     }
 }
+
+// Step: Favorite collections grid - LazyGrid
+@Composable
+fun FavoriteCollectionsGridPic(
+    modifier: Modifier = Modifier
+) {
+    val data = MockProjectsRepoImpl()
+    LazyHorizontalGrid(
+        rows = GridCells.Fixed(3),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier.height(200.dp)
+    ) {
+        items(data.urbanCollection) { item ->
+            FavoriteCollectionCardPic(
+                item,
+
+                modifier = Modifier.height(56.dp)
+            )
+        }
+    }
+}
+
+
 
 // Step: Home section - Slot APIs
 
@@ -209,17 +266,19 @@ fun HomeSection(
 fun HomeScreen(modifier: Modifier = Modifier) {
     Column(modifier.verticalScroll(rememberScrollState())) {
         Spacer(Modifier.height(16.dp))
-        SearchBar(modifier = Modifier.padding(horizontal = 16.dp))
-        HomeSection(R.string.align_your_body, ) { AlignYourBodyRow() }
+        HomeSection(R.string.align_your_body, ) { UrbanPhotoRow() }
         HomeSection(R.string.favorite_collections, ) { FavoriteCollectionsGrid() }
+        HomeSection(R.string.favorite_collections, ) { FavoriteCollectionsGridPic() }
         Spacer(Modifier.height(16.dp))
+        SearchBar(modifier = Modifier.padding(horizontal = 16.dp))
+
 
     }
 }
 
 // Step: Bottom navigation - Material
 @Composable
-private fun SootheBottomNavigation(modifier: Modifier = Modifier) {
+private fun MyBottomNavigation(modifier: Modifier = Modifier) {
     BottomNavigation(
         backgroundColor = MaterialTheme.colors.background,
         modifier = modifier
@@ -257,7 +316,7 @@ private fun SootheBottomNavigation(modifier: Modifier = Modifier) {
 @Composable
 fun MySootheApp() {
     MySootheTheme {
-        Scaffold(bottomBar = { SootheBottomNavigation() }
+        Scaffold(bottomBar = { MyBottomNavigation() }
         ) { padding -> HomeScreen(Modifier.padding(padding)) }
     }
 }
@@ -284,7 +343,7 @@ fun AlignYourBodyElementPreview() {
     }
 }
 
-//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionCardPreview() {
     MySootheTheme {
@@ -296,7 +355,7 @@ fun FavoriteCollectionCardPreview() {
     }
 }
 
-//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionsGridPreview() {
     MySootheTheme { FavoriteCollectionsGrid() }
@@ -305,7 +364,7 @@ fun FavoriteCollectionsGridPreview() {
 //@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun AlignYourBodyRowPreview() {
-    MySootheTheme { AlignYourBodyRow() }
+    MySootheTheme { UrbanPhotoRow() }
 }
 
 //@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
@@ -313,7 +372,7 @@ fun AlignYourBodyRowPreview() {
 fun HomeSectionPreview() {
     MySootheTheme {
         HomeSection(title = R.string.align_your_body) {
-            AlignYourBodyRow()
+            UrbanPhotoRow()
         }
     }
 }
@@ -327,7 +386,7 @@ fun ScreenContentPreview() {
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun BottomNavigationPreview() {
-    MySootheTheme { SootheBottomNavigation(Modifier.padding(top = 24.dp)) }
+    MySootheTheme { MyBottomNavigation(Modifier.padding(top = 24.dp)) }
 }
 
 //@Preview(widthDp = 360, heightDp = 640)

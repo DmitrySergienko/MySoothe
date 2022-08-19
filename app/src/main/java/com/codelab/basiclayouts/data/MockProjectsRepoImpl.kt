@@ -4,21 +4,56 @@ import com.codelab.basiclayouts.R
 
 class MockProjectsRepoImpl {
 
-    val alignYourBodyData = listOf(
-        R.drawable.ab1_inversions to R.string.ab1_inversions,
-        R.drawable.ab2_quick_yoga to R.string.ab2_quick_yoga,
-        R.drawable.ab3_stretching to R.string.ab3_stretching,
-        R.drawable.ab4_tabata to R.string.ab4_tabata,
-        R.drawable.ab5_hiit to R.string.ab5_hiit,
-        R.drawable.ab6_pre_natal_yoga to R.string.ab6_pre_natal_yoga
+    val urbanPhoto = listOf(
+        R.drawable.ic_012 to R.string.ab1_inversions,
+        R.drawable.ic_001 to R.string.ab2_quick_yoga,
+        R.drawable.ic_001 to R.string.ab3_stretching,
+        R.drawable.ic_004 to R.string.ab4_tabata,
+        R.drawable.ic_005 to R.string.ab5_hiit,
+        R.drawable.ic_006 to R.string.ab6_pre_natal_yoga
     ).map { DrawableStringPair(it.first, it.second) }
 
     val favoriteCollectionsData = listOf(
-        R.drawable.fc1_short_mantras to R.string.fc1_short_mantras,
-        R.drawable.fc2_nature_meditations to R.string.fc2_nature_meditations,
-        R.drawable.fc3_stress_and_anxiety to R.string.fc3_stress_and_anxiety,
-        R.drawable.fc4_self_massage to R.string.fc4_self_massage,
-        R.drawable.fc5_overwhelmed to R.string.fc5_overwhelmed,
-        R.drawable.fc6_nightly_wind_down to R.string.fc6_nightly_wind_down
-    ).map { DrawableStringPair(it.first, it.second) }
+        R.drawable.ic_007 to R.string.fc1_short_mantras,
+        R.drawable.ic_009 to R.string.fc2_nature_meditations,
+        R.drawable.ic_003 to R.string.fc3_stress_and_anxiety,
+        R.drawable.ic_001 to R.string.fc4_self_massage,
+        R.drawable.ic_003 to R.string.fc5_overwhelmed,
+        R.drawable.ic_009 to R.string.fc6_nightly_wind_down,
+        R.drawable.ic_001 to R.string.fc6_nightly_wind_down,
+        R.drawable.ic_004 to R.string.fc6_nightly_wind_down,
+        R.drawable.ic_004 to R.string.fc6_nightly_wind_down,
+        R.drawable.ic_001 to R.string.fc6_nightly_wind_down,
+
+        ).map { DrawableStringPair(it.first, it.second) }
+
+    val urbanCollection = listOf(
+
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+        R.drawable.ic_011,
+
+        )
+
 }

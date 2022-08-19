@@ -12,21 +12,21 @@
   the License.
   -->
 <resources>
-    <string name="app_name">MySoothe</string>
+    <string name="app_name">ComposeTask</string>
     <string name="favorite_collections">Favorite Collections</string>
-    <string name="align_your_body">Align your body</string>
+    <string name="align_your_body">Urban style</string>
     <string name="ab1_inversions">Inversions</string>
-    <string name="ab2_quick_yoga">Quick yoga</string>
-    <string name="ab3_stretching">Stretching</string>
-    <string name="ab4_tabata">Tabata</string>
+    <string name="ab2_quick_yoga">Quick action</string>
+    <string name="ab3_stretching">Any type</string>
+    <string name="ab4_tabata">Urban</string>
     <string name="ab5_hiit">HIIT</string>
-    <string name="ab6_pre_natal_yoga">Pre-natal yoga</string>
-    <string name="fc1_short_mantras">Short mantras</string>
-    <string name="fc2_nature_meditations">Nature meditations</string>
-    <string name="fc3_stress_and_anxiety">Stress and anxiety</string>
-    <string name="fc4_self_massage">Self massage</string>
-    <string name="fc5_overwhelmed">Overwhelmed</string>
-    <string name="fc6_nightly_wind_down">Nightly wind down</string>
+    <string name="ab6_pre_natal_yoga">Any type</string>
+    <string name="fc1_short_mantras">Any type</string>
+    <string name="fc2_nature_meditations">Any type</string>
+    <string name="fc3_stress_and_anxiety">Any type</string>
+    <string name="fc4_self_massage">Any massage</string>
+    <string name="fc5_overwhelmed">Any massage</string>
+    <string name="fc6_nightly_wind_down">Any massage</string>
     <string name="cd_fab_start">start</string>
     <string name="bottom_navigation_home">HOME</string>
     <string name="bottom_navigation_profile">PROFILE</string>
